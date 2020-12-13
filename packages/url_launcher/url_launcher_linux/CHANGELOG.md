@@ -1,3 +1,15 @@
+## 0.0.2+1
+
+* Update Flutter SDK constraint.
+
+## 0.0.2
+
+* Update integration test examples to use `testWidgets` instead of `test`.
+
+## 0.0.1+4
+
+* Update Dart SDK constraint in example.
+
 ## 0.0.1+3
 
 * Add a missing include.

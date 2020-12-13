@@ -1,3 +1,23 @@
+## 5.7.13
+
+* Update Flutter SDK constraint.
+
+## 5.7.12
+
+* Updated code sample in `README.md`
+
+## 5.7.11
+
+* Update integration test examples to use `testWidgets` instead of `test`.
+
+## 5.7.10
+
+* Update Dart SDK constraint in example.
+
+## 5.7.9
+
+* Check in windows/ directory for example/
+
 ## 5.7.8
 
 * Fixed a situation where an app would crash if the url_launcher’s `launch` method can’t find an app to open the provided url. It will now throw a clear Dart PlatformException.
