@@ -1,3 +1,9 @@
+## 2.0.0
+
+* Migrate to null-safety.
+* Update the example app: remove the deprecated `RaisedButton` and `FlatButton` widgets.
+* Set `implementation` in pubspec.yaml
+
 ## 0.0.2+1
 
 * Update Flutter SDK constraint.

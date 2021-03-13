@@ -1,3 +1,16 @@
+## 2.0.0
+
+* Migrate to null safety.
+
+## 1.0.4
+
+* Android: Add Log warning for unsatisfied requirement(s) in Android P or higher.
+* Android: Update Example project.
+
+## 1.0.3
+
+* Fix README example.
+
 ## 1.0.2
 
 * Update Flutter SDK constraint.

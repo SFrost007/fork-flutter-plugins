@@ -1,3 +1,8 @@
+## 2.0.0
+
+* Bump Dart SDK for null-safety compatibility.
+* Fix outdated links across a number of markdown files ([#3276](https://github.com/flutter/plugins/pull/3276))
+
 ## 1.0.12
 
 * Update Flutter SDK constraint.

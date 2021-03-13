@@ -1,3 +1,9 @@
+## 2.0.0
+
+* Migrate to null safety.
+* Calling `setMixWithOthers()` now is silently ignored instead of throwing an exception.
+* Fixed an issue where `isBuffering` was not updating on Web.
+
 ## 0.1.4+2
 
 * Update Flutter SDK constraint.

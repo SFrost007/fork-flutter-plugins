@@ -5,7 +5,6 @@ import static com.google.android.exoplayer2.Player.REPEAT_MODE_OFF;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.view.Surface;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -169,10 +168,21 @@ final class VideoPlayer {
 
     exoPlayer.addListener(
         new EventListener() {
+          private boolean isBuffering = false;
+
+          public void setBuffering(boolean buffering) {
+            if (isBuffering != buffering) {
+              isBuffering = buffering;
+              Map<String, Object> event = new HashMap<>();
+              event.put("event", isBuffering ? "bufferingStart" : "bufferingEnd");
+              eventSink.success(event);
+            }
+          }
 
           @Override
           public void onPlaybackStateChanged(final int playbackState) {
             if (playbackState == Player.STATE_BUFFERING) {
+              setBuffering(true);
               sendBufferingUpdate();
             } else if (playbackState == Player.STATE_READY) {
               if (!isInitialized) {
@@ -184,10 +194,15 @@ final class VideoPlayer {
               event.put("event", "completed");
               eventSink.success(event);
             }
+
+            if (playbackState != Player.STATE_BUFFERING) {
+              setBuffering(false);
+            }
           }
 
           @Override
           public void onPlayerError(final ExoPlaybackException error) {
+            setBuffering(false);
             if (eventSink != null) {
               eventSink.error("VideoError", "Video player had error " + error, null);
             }
@@ -206,12 +221,8 @@ final class VideoPlayer {
 
   @SuppressWarnings("deprecation")
   private static void setAudioAttributes(SimpleExoPlayer exoPlayer, boolean isMixMode) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      exoPlayer.setAudioAttributes(
-          new AudioAttributes.Builder().setContentType(C.CONTENT_TYPE_MOVIE).build(), !isMixMode);
-    } else {
-      exoPlayer.setAudioStreamType(C.STREAM_TYPE_MUSIC);
-    }
+    exoPlayer.setAudioAttributes(
+        new AudioAttributes.Builder().setContentType(C.CONTENT_TYPE_MOVIE).build(), !isMixMode);
   }
 
   void play() {
